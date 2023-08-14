@@ -13,24 +13,25 @@ let [clicked,setClicked] =useState(false);
       if(names.yname!=="" && names.pname!=="")
       {
         console.log("hi");
-        let ynametemparr = names.yname;
-        let pnametemparr = names.pname;
+        let ynametemparr = names.yname.toLowerCase();
+        let pnametemparr = names.pname.toLowerCase();
 
         for(let i=0;i<names.yname.length;i++)
         {
             let yname1=ynametemparr.split("");
             let pname1=pnametemparr.split("");
-            console.log(yname1,"yname",pname1,"pname",names.yname[i],i)
+            console.log(yname1,"yname",pname1,"pname",names.yname[i].toLowerCase(),i)
 
-            if(pname1.indexOf(names.yname[i])>=0)
+            if(pname1.indexOf(names.yname[i].toLowerCase())>=0)
             {
-                let pind = pname1.indexOf(names.yname[i])
-                console.log(pind,"pind",pname1)
-                yname1.shift();
+                let pind = pname1.indexOf(names.yname[i].toLowerCase());
+                let yind = yname1.indexOf(names.yname[i].toLowerCase())
+                // console.log(pind,"pind",pname1)
+                yname1.splice(yind,1)
                 pname1.splice(pind,1)
                 ynametemparr=yname1.join("");
                 pnametemparr=pname1.join("");
-                console.log("tme",yname1,pname1)
+                console.log("deleted",names.yname[i].toLowerCase())
             }
         }
         // setNames({...names,yname:ynametemparr,pname:pnametemparr})
@@ -51,6 +52,7 @@ let [clicked,setClicked] =useState(false);
         return(
             <div id="main">
                {/* Do not remove the main div */}
+               <h1>Flames App -Check The Relation Between You And Your Partner</h1>
                <form onSubmit={submitted}>
                 <input type="text" data-testid="input1" placeholder="Enter Your Name" value={names.yname} onChange={(e)=>{setNames({...names,yname:e.target.value})}} />
                  <input type="text" data-testid="input2" placeholder="Enter Your Partner Name" value={names.pname} onChange={(e)=>{setNames({...names,pname:e.target.value})}} />
