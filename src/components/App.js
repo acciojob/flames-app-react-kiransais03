@@ -54,12 +54,12 @@ let [clicked,setClicked] =useState(false);
                {/* Do not remove the main div */}
                <h1>Flames App -Check The Relation Between You And Your Partner</h1>
                <form onSubmit={submitted}>
-                <input type="text" data-testid="input1" placeholder="Enter Your Name" value={names.yname} onChange={(e)=>{setNames({...names,yname:e.target.value})}} />
-                 <input type="text" data-testid="input2" placeholder="Enter Your Partner Name" value={names.pname} onChange={(e)=>{setNames({...names,pname:e.target.value})}} />
+                <input name="name1" type="text" data-testid="input1" placeholder="Enter Your Name" value={names.yname} onChange={(e)=>{setNames({...names,yname:e.target.value})}} />
+                 <input name="name2" type="text" data-testid="input2" placeholder="Enter Your Partner Name" value={names.pname} onChange={(e)=>{setNames({...names,pname:e.target.value})}} />
                  <button type="submit" data-testid="calculate_relationship">Calculate Relationship Future</button>
                  <button type="reset" onClick={()=>{setNames({yname:"",pname:""},setClicked(false))}} data-testid="clear">Clear</button>
-               </form>
                {clicked && <h3 data-testid="answer">{rel}</h3>}
+               </form>
             </div>
         )
     }
